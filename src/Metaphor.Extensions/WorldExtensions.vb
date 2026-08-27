@@ -32,7 +32,7 @@ Public Module WorldExtensions
     Public Sub Initialize(world As IWorld, context As IInitializationContext)
         world.Clear()
         world.CreatePier(context)
-        world.AddMessage("Welcome to Shark Attackers of SPLORR!!!")
+        world.AddMessage("Welcome to Beneath the Blue Room")
         world.Avatar.Look()
     End Sub
 End Module
