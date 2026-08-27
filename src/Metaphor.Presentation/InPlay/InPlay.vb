@@ -1,5 +1,4 @@
-﻿Imports Metaphor.Extensions
-Imports Metaphor.Processing
+﻿Imports Metaphor.Processing
 Imports TGGD.Presentation
 
 Friend Class InPlay
@@ -20,27 +19,11 @@ Friend Class InPlay
 
     Private modeLaunchers As New Dictionary(Of String, LaunchDelegate) From
         {
-            {DialogModes.CHANGE_HEADING, AddressOf LaunchChangeHeading},
-            {DialogModes.CHANGE_SPEED, AddressOf LaunchChangeSpeed}
         }
-
-    Private Function LaunchChangeSpeed(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
-        Return ChangeSpeedPrompt.Launch(context, model, previous)
-    End Function
-
-    Private Function LaunchChangeHeading(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
-        Return ChangeHeadingPrompt.Launch(context, model, previous)
-    End Function
 
     Public Overrides Function Run() As IDialogPrompt
         If Model.Ad.InProgress Then
             Return AdPrompt.Launch(Context, Model, Previous).Invoke().Run()
-        End If
-        If Model.Avatar.IsDead Then
-            Return YerDeadMenu.Launch(Context, Model, Previous).Invoke().Run()
-        End If
-        If Model.Avatar.Combat.Active Then
-            Return CombatMenu.Launch(Context, Model, Previous).Invoke().Run()
         End If
         Dim launchDelgate As LaunchDelegate = Nothing
         If modeLaunchers.TryGetValue(Model.Avatar.DialogMode, launchDelgate) Then

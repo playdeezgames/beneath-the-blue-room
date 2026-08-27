@@ -3,14 +3,6 @@ Imports Metaphor.Persistence
 
 Public Module CharacterStatisticExtensions
     <Extension>
-    Friend Sub Die(character As ICharacter)
-        character.SetTag(Tags.DEAD)
-    End Sub
-    <Extension>
-    Public Function IsDead(character As ICharacter) As Boolean
-        Return character.HasTag(Tags.DEAD)
-    End Function
-    <Extension>
     Public Function IsAvatar(character As ICharacter) As Boolean
         Return character.EntityId = character.World.Avatar.EntityId
     End Function
