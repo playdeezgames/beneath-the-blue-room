@@ -3,7 +3,7 @@
 
     Private _rows As New List(Of IGridRow)
 
-    Public ReadOnly Property Rows As IEnumerable(Of IGridRow) Implements IGrid.Rows
+    Public ReadOnly Property Rows As IList(Of IGridRow) Implements IGrid.Rows
         Get
             Return _rows
         End Get
@@ -22,4 +22,13 @@
             _rows = Enumerable.Range(0, value.Rows).Select(Function(x) GridRow.Create(value.Columns)).ToList()
         End Set
     End Property
+
+    Public Sub Fill(position As (Column As Integer, Row As Integer), size As (Columns As Integer, Rows As Integer), text As String, [class] As String) Implements IGrid.Fill
+        For Each x In Enumerable.Range(position.Column, size.Columns)
+            For Each y In Enumerable.Range(position.Row, size.Rows)
+                Rows(y).Cells(x).Text = text
+                Rows(y).Cells(x).Class = [class]
+            Next
+        Next
+    End Sub
 End Class

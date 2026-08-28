@@ -7,7 +7,7 @@
         _cells = Enumerable.Range(0, cells).Select(Function(x) GridCell.Create()).ToList()
     End Sub
 
-    Public ReadOnly Property Cells As IEnumerable(Of IGridCell) Implements IGridRow.Cells
+    Public ReadOnly Property Cells As IList(Of IGridCell) Implements IGridRow.Cells
         Get
             Return _cells
         End Get
