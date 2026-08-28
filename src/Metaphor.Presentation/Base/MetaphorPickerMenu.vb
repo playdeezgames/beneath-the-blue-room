@@ -8,6 +8,7 @@ Friend MustInherit Class MetaphorPickerMenu
         MyBase.New(context, model, previous)
     End Sub
     Protected Overrides Sub Render()
+        Context.Grid.Refresh(Model)
         For Each message In Model.Messages
             Context.Render(message.Text, message.HintNames.ToDictionary(Function(x) x, Function(x) message.GetHint(x)))
         Next

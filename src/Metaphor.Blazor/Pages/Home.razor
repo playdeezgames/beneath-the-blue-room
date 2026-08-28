@@ -11,7 +11,7 @@
 			<tr>
 				@foreach(var gridCell in gridRow.Cells)
 				{
-					<td>gridCell.Text</td>
+					<td class="gridcell @gridCell.Class">@gridCell.Text</td>
 				}
 			</tr>
 		}

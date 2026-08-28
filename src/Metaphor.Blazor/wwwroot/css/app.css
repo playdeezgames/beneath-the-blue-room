@@ -1,7 +1,132 @@
+@font-face {
+    font-family: 'Web437_IBM_CGA';
+    src: url('../fonts/Web437_IBM_CGA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Web437_IBM_CGA', Helvetica, Arial, sans-serif;
     background-color: #36366C;
     color: #969696;
+}
+
+TD.gridcell {
+    margin: 0px;
+    padding: 0px;
+}
+
+.fg0 {
+    color: #000000;
+}
+.fg1 {
+    color: #0000AA;
+}
+.fg2 {
+    color: #00AA00;
+}
+.fg3 {
+    color: #00AAAA;
+}
+.fg4 {
+    color: #AA0000;
+}
+.fg5 {
+    color: #AA00AA;
+}
+.fg6 {
+    color: #AA5500;
+}
+.fg7 {
+    color: #AAAAAA;
+}
+.fg8 {
+    color: #555555;
+}
+.fg9 {
+    color: #5555FF;
+}
+.fg10 {
+    color: #55FF55;
+}
+.fg11 {
+    color: #55FFFF;
+}
+.fg12 {
+    color: #FF5555;
+}
+.fg13 {
+    color: #FF55FF;
+}
+.fg14 {
+    color: #FFFF55;
+}
+.fg15 {
+    color: #FFFFFF;
+}
+
+.bg0 {
+    background-color: #000000;
+}
+
+.bg1 {
+    background-color: #0000AA;
+}
+
+.bg2 {
+    background-color: #00AA00;
+}
+
+.bg3 {
+    background-color: #00AAAA;
+}
+
+.bg4 {
+    background-color: #AA0000;
+}
+
+.bg5 {
+    background-color: #AA00AA;
+}
+
+.bg6 {
+    background-color: #AA5500;
+}
+
+.bg7 {
+    background-color: #AAAAAA;
+}
+
+.bg8 {
+    background-color: #555555;
+}
+
+.bg9 {
+    background-color: #5555FF;
+}
+
+.bg10 {
+    background-color: #55FF55;
+}
+
+.bg11 {
+    background-color: #55FFFF;
+}
+
+.bg12 {
+    background-color: #FF5555;
+}
+
+.bg13 {
+    background-color: #FF55FF;
+}
+
+.bg14 {
+    background-color: #FFFF55;
+}
+
+.bg15 {
+    background-color: #FFFFFF;
 }
 
 article{

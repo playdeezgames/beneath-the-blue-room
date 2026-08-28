@@ -5,6 +5,7 @@ Public MustInherit Class Display
 
     Private _prompt As IDialogPrompt
     Private ReadOnly _elements As New List(Of IDisplayElement)
+    Private _grid As IGrid = New Grid()
 
     Protected Sub New()
     End Sub
@@ -29,7 +30,7 @@ Public MustInherit Class Display
 
     Public ReadOnly Property Grid As IGrid Implements IDisplay.Grid
         Get
-            Return Nothing
+            Return _grid
         End Get
     End Property
 

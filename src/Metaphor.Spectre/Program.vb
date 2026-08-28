@@ -13,11 +13,33 @@ Module Program
         Dim display As IDisplay = MetaphorDisplay.Create(True, New Persister).Result
         While display.Running
             AnsiConsole.Clear()
-            For Each element In display.Elements
-                RenderElement(element)
-            Next
+            RenderGrid(display.Grid)
+            RenderElements(display)
             ReadPrompt(display.Prompt)
         End While
+    End Sub
+
+    Private Sub RenderElements(display As IDisplay)
+        For Each element In display.Elements
+            RenderElement(element)
+        Next
+    End Sub
+
+    Private Sub RenderGrid(grid As IGrid)
+        For Each row In grid.Rows
+            RenderGridRow(row)
+            AnsiConsole.WriteLine()
+        Next
+    End Sub
+
+    Private Sub RenderGridRow(row As IGridRow)
+        For Each cell In row.Cells
+            RenderGridCell(cell)
+        Next
+    End Sub
+
+    Private Sub RenderGridCell(cell As IGridCell)
+        AnsiConsole.Markup(cell.Text)
     End Sub
 
     Private Sub ReadPrompt(prompt As IDialogPrompt)
