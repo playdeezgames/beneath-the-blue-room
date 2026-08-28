@@ -33,6 +33,33 @@ Friend Class Location
         End Get
     End Property
 
+    Public Property Map As IMap Implements ILocation.Map
+        Get
+            Return World.GetMap(GetYoke(Yokes.MAP))
+        End Get
+        Set(value As IMap)
+            Map?.RemoveFromYokage(Yokages.LOCATIONS, EntityId)
+            If value IsNot Nothing Then
+                SetYoke(Yokes.MAP, value.EntityId)
+            Else
+                ClearYoke(Yokes.MAP)
+            End If
+            Map?.AddToYokage(Yokages.LOCATIONS, EntityId)
+        End Set
+    End Property
+
+    Public ReadOnly Property Column As Integer Implements ILocation.Column
+        Get
+            Return GetCounter(Counters.COLUMN)
+        End Get
+    End Property
+
+    Public ReadOnly Property Row As Integer Implements ILocation.Row
+        Get
+            Return GetCounter(Counters.ROW)
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As EntityData
         Get
             Return _data.Entities(EntityId)

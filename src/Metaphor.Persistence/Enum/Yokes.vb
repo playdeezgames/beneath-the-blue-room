@@ -4,5 +4,6 @@
     Friend Const DESTINATION As String = NameOf(DESTINATION)
     Friend Const INVENTORY As String = NameOf(INVENTORY)
     Friend Const LOCATION As String = NameOf(LOCATION)
+    Friend Const MAP As String = NameOf(MAP)
     Friend Const TWIN As String = NameOf(TWIN)
 End Module

@@ -3,29 +3,35 @@
 Friend Class CharactersModel
     Implements ICharactersModel
 
-    Private ReadOnly world As IWorld
+    Private ReadOnly location As ILocation
 
-    Private Sub New(world As IWorld)
-        Me.world = world
+    Private Sub New(location As ILocation)
+        Me.location = location
     End Sub
 
-    Public ReadOnly Property HasAny As Boolean Implements ICharactersModel.HasAny
+    Public ReadOnly Property HasOthers As Boolean Implements ICharactersModel.HasOthers
         Get
-            Return world.Avatar.Location.HasOtherCharacters(world.Avatar)
+            Return location.HasOtherCharacters(location.World.Avatar)
+        End Get
+    End Property
+
+    Public ReadOnly Property Others As IEnumerable(Of ICharacterModel) Implements ICharactersModel.Others
+        Get
+            Return location.GetOtherCharacters(location.World.Avatar).Select(AddressOf CharacterModel.Create)
         End Get
     End Property
 
     Public ReadOnly Property All As IEnumerable(Of ICharacterModel) Implements ICharactersModel.All
         Get
-            Return world.Avatar.Location.GetOtherCharacters(world.Avatar).Select(AddressOf CharacterModel.Create)
+            Return location.Characters.Select(AddressOf CharacterModel.Create)
         End Get
     End Property
 
     Public Sub ShowList() Implements ICharactersModel.ShowList
-        world.ClearMessages()
+        location.World.ClearMessages()
     End Sub
 
-    Friend Shared Function Create(entity As IWorld) As ICharactersModel
+    Friend Shared Function Create(entity As ILocation) As ICharactersModel
         Return New CharactersModel(entity)
     End Function
 End Class

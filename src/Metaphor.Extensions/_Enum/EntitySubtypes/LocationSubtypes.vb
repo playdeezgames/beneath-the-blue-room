@@ -1,4 +1,5 @@
-﻿Friend NotInheritable Class LocationSubtypes
+﻿Public NotInheritable Class LocationSubtypes
     Private Sub New() : End Sub
-    Friend Const PIER As String = NameOf(PIER)
+    Public Const WALL As String = NameOf(WALL)
+    Public Const FLOOR As String = NameOf(FLOOR)
 End Class

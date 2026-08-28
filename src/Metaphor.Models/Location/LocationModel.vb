@@ -40,7 +40,25 @@ Friend Class LocationModel
 
     Public ReadOnly Property Characters As ICharactersModel Implements ILocationModel.Characters
         Get
-            Return CharactersModel.Create(location.World)
+            Return CharactersModel.Create(location)
+        End Get
+    End Property
+
+    Public ReadOnly Property LocationType As String Implements ILocationModel.LocationType
+        Get
+            Return location.EntitySubtype
+        End Get
+    End Property
+
+    Public ReadOnly Property Column As Integer Implements ILocationModel.Column
+        Get
+            Return location.Column
+        End Get
+    End Property
+
+    Public ReadOnly Property Row As Integer Implements ILocationModel.Row
+        Get
+            Return location.Row
         End Get
     End Property
 End Class

@@ -23,7 +23,7 @@
         End Set
     End Property
 
-    Public Sub Fill(position As (Column As Integer, Row As Integer), size As (Columns As Integer, Rows As Integer), text As String, [class] As String) Implements IGrid.Fill
+    Public Sub Fill(position As (Column As Integer, Row As Integer), size As (Columns As Integer, Rows As Integer), text As Byte, [class] As Byte) Implements IGrid.Fill
         For Each x In Enumerable.Range(position.Column, size.Columns)
             For Each y In Enumerable.Range(position.Row, size.Rows)
                 Rows(y).Cells(x).Text = text

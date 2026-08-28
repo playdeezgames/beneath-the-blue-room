@@ -8,4 +8,7 @@ Public Interface ILocation
     Function GetOtherCharacters(character As ICharacter) As IEnumerable(Of ICharacter)
     Function HasOtherCharacters(character As ICharacter) As Boolean
     ReadOnly Property Characters As IEnumerable(Of ICharacter)
+    Property Map As IMap
+    ReadOnly Property Column As Integer
+    ReadOnly Property Row As Integer
 End Interface

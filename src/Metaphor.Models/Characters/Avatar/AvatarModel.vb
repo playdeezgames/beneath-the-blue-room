@@ -28,6 +28,12 @@ Friend Class AvatarModel
         End Get
     End Property
 
+    Public ReadOnly Property Map As IMapModel Implements IAvatarModel.Map
+        Get
+            Return MapModel.Create(avatar.Location.Map)
+        End Get
+    End Property
+
     Public Sub ShowStatus() Implements IAvatarModel.ShowStatus
         avatar.World.ClearMessages()
         avatar.ShowStatus()

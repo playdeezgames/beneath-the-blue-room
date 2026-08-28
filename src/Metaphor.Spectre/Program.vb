@@ -38,8 +38,17 @@ Module Program
         Next
     End Sub
 
+    Private ReadOnly characterXform As New Dictionary(Of Byte, String) From
+        {
+            {2, "@"}
+        }
+
     Private Sub RenderGridCell(cell As IGridCell)
-        AnsiConsole.Markup(cell.Text)
+        Dim xform As String = Nothing
+        If Not characterXform.TryGetValue(cell.Text, xform) Then
+            xform = Chr(CInt(cell.Text))
+        End If
+        AnsiConsole.Markup(xform)
     End Sub
 
     Private Sub ReadPrompt(prompt As IDialogPrompt)

@@ -27,6 +27,12 @@ Friend Class CharacterModel
         End Get
     End Property
 
+    Public ReadOnly Property CharacterType As String Implements ICharacterModel.CharacterType
+        Get
+            Return character.EntitySubtype
+        End Get
+    End Property
+
     Public Sub Examine() Implements ICharacterModel.Examine
         Dim world = character.World
         world.ClearMessages()

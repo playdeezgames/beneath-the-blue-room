@@ -22,7 +22,7 @@ Friend Class NavigationMenu
                 Append(AddressOf ChooseStatus).
                 Append(AddressOf ChooseGround).
                 Append(AddressOf ChooseInventory).
-                Concat(Model.Location.Characters.All.Select(AddressOf ChooseCharacter)).
+                Concat(Model.Location.Characters.Others.Select(AddressOf ChooseCharacter)).
                 Concat(Model.Location.Features.AllVisible.Select(AddressOf ChooseFeature)).
                 Append(AddressOf ChooseLook).
                 Append(AddressOf InPlay.ChooseWatchAd).

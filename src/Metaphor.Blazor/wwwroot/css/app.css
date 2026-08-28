@@ -5,6 +5,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Web437_IBM_MDA';
+    src: url('../fonts/Web437_IBM_MDA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
     font-family: 'Web437_IBM_CGA', Helvetica, Arial, sans-serif;
     background-color: #36366C;

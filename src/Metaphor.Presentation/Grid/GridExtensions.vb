@@ -1,14 +1,28 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Metaphor.Extensions
 Imports Metaphor.Processing
 Imports TGGD.Presentation
 
 Friend Module GridExtensions
+    Private ReadOnly characterTypeDeets As New Dictionary(Of String, (Text As Byte, [Class] As Byte)) From
+        {
+            {CharacterSubtypes.N00B, (2, &HF)}
+        }
+    Private ReadOnly locationTypeDeets As New Dictionary(Of String, (Text As Byte, [Class] As Byte)) From
+        {
+            {LocationSubtypes.WALL, (CByte(Asc("#")), &H91)},
+            {LocationSubtypes.FLOOR, (CByte(Asc(".")), &H7)}
+        }
     <Extension>
     Friend Sub Refresh(grid As IGrid, model As IWorldModel)
-        Const columns = 20
-        Const rows = 15
-        grid.Size = (columns, rows)
-        grid.Fill((0, 0), (columns, rows), "#", "fg1 bg9")
-        grid.Fill((1, 1), (columns - 2, rows - 2), ".", "fg7 bg0")
+        Dim mapModel = model.Avatar.Map
+        grid.Size = (mapModel.Columns, mapModel.Rows)
+        For Each location In mapModel.Locations
+            Dim character = location.Characters.All.FirstOrDefault()
+            Dim deets = If(character Is Nothing, locationTypeDeets(location.LocationType), characterTypeDeets(character.CharacterType))
+            Dim cell = grid.Rows(location.Row).Cells(location.Column)
+            cell.Text = deets.Text
+            cell.Class = deets.Class
+        Next
     End Sub
 End Module

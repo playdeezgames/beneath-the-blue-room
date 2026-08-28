@@ -2,19 +2,16 @@
 Imports Metaphor.Persistence
 
 Public Module WorldExtensions
-#Region "Pier"
+#Region "Blue Room"
     <Extension>
-    Private Sub CreatePier(world As IWorld, context As IInitializationContext)
-        world.CreateLocation(
-            LocationSubtypes.PIER,
-            "Pier",
-            LocationInitializationExtensions.InitializePier(context.ChosenName))
-    End Sub
+    Private Function CreateBlueRoom(world As IWorld, context As IInitializationContext) As IMap
+        Return world.CreateMap(MapSubtypes.BLUE_ROOM, "The Blue Room", (Grimoire.ROOM_COLUMNS, Grimoire.ROOM_ROWS), MapInitializationExtensions.InitializeBlueRoom(context))
+    End Function
 #End Region
     <Extension>
     Public Sub Initialize(world As IWorld, context As IInitializationContext)
         world.Clear()
-        world.CreatePier(context)
+        world.CreateBlueRoom(context)
         world.AddMessage("Welcome to Beneath the Blue Room")
         world.Avatar.Look()
     End Sub

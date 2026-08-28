@@ -109,4 +109,29 @@ Public Class World
     Public Function GetFeature(featureId As Guid?) As IFeature Implements IWorld.GetFeature
         Return Feature.Create(Me, Data, featureId)
     End Function
+
+    Public Function CreateMap(entitySubtype As String, name As String, size As (Columns As Integer, Rows As Integer), Optional initializer As MapInitializer = Nothing) As IMap Implements IWorld.CreateMap
+        Dim mapId = Guid.NewGuid
+        Data.Entities(mapId) = New EntityData With
+            {
+                .EntityType = EntityTypes.MAP_ENTITY,
+                .Metadatas = New Dictionary(Of String, String) From
+                {
+                    {Metadatas.ENTITY_SUBTYPE, entitySubtype},
+                    {Metadatas.NAME, name}
+                },
+                .Counters = New Dictionary(Of String, Integer) From
+                {
+                    {Counters.COLUMNS, size.Columns},
+                    {Counters.ROWS, size.Rows}
+                }
+            }
+        Dim result = Map.Create(Me, Data, mapId)
+        initializer?.Invoke(result)
+        Return result
+    End Function
+
+    Public Function GetMap(mapId As Guid?) As IMap Implements IWorld.GetMap
+        Return Map.Create(Me, Data, mapId)
+    End Function
 End Class

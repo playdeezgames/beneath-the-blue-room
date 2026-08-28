@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using System.Text
 @inject IJSRuntime JSRuntime
 
 <PageTitle>Beneath the Blue Room</PageTitle>
@@ -11,7 +12,7 @@
 			<tr>
 				@foreach(var gridCell in gridRow.Cells)
 				{
-					<td class="gridcell @gridCell.Class">@gridCell.Text</td>
+					<td class="gridcell @TransformClass(gridCell.Class)">@TransformText(gridCell.Text)</td>
 				}
 			</tr>
 		}
@@ -80,6 +81,14 @@
 
 @code
 {
+	string TransformText(byte fromText)
+	{
+		return Encoding.ASCII.GetString([fromText]);
+	}
+	string TransformClass(byte fromClass)
+	{
+		return $"fg{fromClass & 15} bg{fromClass >> 4}";
+	}
 	InputModel inputModel = new();
 	IDisplay? display = null;
 	async Task<IDisplay> GetDisplayAsync()

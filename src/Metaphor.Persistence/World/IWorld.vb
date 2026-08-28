@@ -12,4 +12,6 @@ Public Interface IWorld
     Function GetLocation(locationId As Guid?) As ILocation
     Function GetCharacter(characterId As Guid?) As ICharacter
     Function GetFeature(featureId As Guid?) As IFeature
+    Function CreateMap(mapType As String, name As String, size As (Columns As Integer, Rows As Integer), Optional initializer As MapInitializer = Nothing) As IMap
+    Function GetMap(mapId As Guid?) As IMap
 End Interface
