@@ -4,6 +4,10 @@ Imports Metaphor.Processing
 Imports TGGD.Presentation
 
 Friend Module GridExtensions
+    Private ReadOnly featureTypeDeets As New Dictionary(Of String, (Text As Byte, [Class] As Byte)) From
+        {
+            {FeatureSubtypes.CHEST, (127, &H6)}
+        }
     Private ReadOnly characterTypeDeets As New Dictionary(Of String, (Text As Byte, [Class] As Byte)) From
         {
             {CharacterSubtypes.N00B, (2, &HF)}
@@ -19,7 +23,13 @@ Friend Module GridExtensions
         grid.Size = (mapModel.Columns, mapModel.Rows)
         For Each location In mapModel.Locations
             Dim character = location.Characters.All.FirstOrDefault()
-            Dim deets = If(character Is Nothing, locationTypeDeets(location.LocationType), characterTypeDeets(character.CharacterType))
+            Dim feature = location.Features.AllVisible.FirstOrDefault()
+            Dim deets = If(
+                character Is Nothing,
+                If(feature Is Nothing,
+                locationTypeDeets(location.LocationType),
+                featureTypeDeets(feature.FeatureType)),
+                characterTypeDeets(character.CharacterType))
             Dim cell = grid.Rows(location.Row).Cells(location.Column)
             cell.Character = deets.Text
             cell.Attribute = deets.Class

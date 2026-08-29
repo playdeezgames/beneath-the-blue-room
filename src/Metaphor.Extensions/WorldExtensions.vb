@@ -4,18 +4,19 @@ Imports Metaphor.Persistence
 Public Module WorldExtensions
 #Region "Blue Room"
     <Extension>
-    Private Function CreateBlueRoom(world As IWorld, context As IInitializationContext) As IMap
+    Private Function CreateBlueRoom(world As IWorld) As IMap
         Return world.CreateMap(
             MapSubtypes.BLUE_ROOM,
             "The Blue Room",
             (Grimoire.ROOM_COLUMNS, Grimoire.ROOM_ROWS),
-            MapInitializationExtensions.InitializeBlueRoom(context))
+            AddressOf MapInitializationExtensions.InitializeBlueRoom)
     End Function
 #End Region
     <Extension>
     Public Sub Initialize(world As IWorld, context As IInitializationContext)
         world.Clear()
-        world.CreateBlueRoom(context)
+        world.SetMetadata(Metadatas.CHOSEN_NAME, context.ChosenName)
+        world.CreateBlueRoom()
         world.AddMessage("Welcome to Beneath the Blue Room")
         world.Avatar.Look()
     End Sub

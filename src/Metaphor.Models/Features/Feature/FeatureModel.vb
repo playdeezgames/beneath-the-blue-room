@@ -40,6 +40,12 @@ Friend Class FeatureModel
         End Get
     End Property
 
+    Public ReadOnly Property FeatureType As String Implements IFeatureModel.FeatureType
+        Get
+            Return feature.EntitySubtype
+        End Get
+    End Property
+
     Public Sub Describe() Implements IFeatureModel.Describe
         feature.World.ClearMessages()
         feature.Describe()

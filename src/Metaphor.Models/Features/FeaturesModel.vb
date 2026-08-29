@@ -3,29 +3,29 @@
 Friend Class FeaturesModel
     Implements IFeaturesModel
 
-    Private ReadOnly world As IWorld
+    Private ReadOnly location As ILocation
 
-    Private Sub New(world As IWorld)
-        Me.world = world
+    Private Sub New(location As ILocation)
+        Me.location = location
     End Sub
 
     Public ReadOnly Property HasAny As Boolean Implements IFeaturesModel.HasAny
         Get
-            Return world.Avatar.Location.Features.Any()
+            Return location.Features.Any()
         End Get
     End Property
 
     Public ReadOnly Property AllVisible As IEnumerable(Of IFeatureModel) Implements IFeaturesModel.AllVisible
         Get
-            Return world.Avatar.Location.Features.Select(AddressOf FeatureModel.Create)
+            Return location.Features.Select(AddressOf FeatureModel.Create)
         End Get
     End Property
 
     Public Sub ShowList() Implements IFeaturesModel.ShowList
-        world.ClearMessages()
+        location.World.ClearMessages()
     End Sub
 
-    Friend Shared Function Create(entity As IWorld) As IFeaturesModel
+    Friend Shared Function Create(entity As ILocation) As IFeaturesModel
         Return New FeaturesModel(entity)
     End Function
 End Class

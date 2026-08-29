@@ -34,7 +34,7 @@ Friend Class LocationModel
 
     Public ReadOnly Property Features As IFeaturesModel Implements ILocationModel.Features
         Get
-            Return FeaturesModel.Create(location.World)
+            Return FeaturesModel.Create(location)
         End Get
     End Property
 
