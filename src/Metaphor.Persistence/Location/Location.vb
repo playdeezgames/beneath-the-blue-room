@@ -27,12 +27,6 @@ Friend Class Location
         End Get
     End Property
 
-    Public Overrides ReadOnly Property Exists As Boolean
-        Get
-            Return _data.Entities.ContainsKey(EntityId)
-        End Get
-    End Property
-
     Public Property Map As IMap Implements ILocation.Map
         Get
             Return World.GetMap(GetYoke(Yokes.MAP))

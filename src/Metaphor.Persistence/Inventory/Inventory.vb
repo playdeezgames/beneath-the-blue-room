@@ -27,12 +27,6 @@ Friend Class Inventory
         End Get
     End Property
 
-    Public Overrides ReadOnly Property Exists As Boolean
-        Get
-            Throw New NotImplementedException()
-        End Get
-    End Property
-
     Protected Overrides ReadOnly Property Data As EntityData
         Get
             Return _data.Entities(EntityId)

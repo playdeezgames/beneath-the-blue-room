@@ -9,12 +9,6 @@ Friend Class Verb
         MyBase.New(world, data, verbId)
     End Sub
 
-    Public Overrides ReadOnly Property Exists As Boolean
-        Get
-            Return _data.Entities.ContainsKey(EntityId)
-        End Get
-    End Property
-
     Protected Overrides ReadOnly Property Data As EntityData
         Get
             Return _data.Entities(EntityId)

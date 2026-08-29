@@ -29,7 +29,12 @@ Friend MustInherit Class MetaphorEntity(Of TData As EntityData)
         End Get
     End Property
 
-    Public MustOverride ReadOnly Property Exists As Boolean Implements IMetaphorEntity.Exists
+    Public ReadOnly Property Exists As Boolean Implements IMetaphorEntity.Exists
+        Get
+            Return _data.Entities.ContainsKey(EntityId)
+        End Get
+    End Property
+
     Protected ReadOnly _data As WorldData
 
     Public ReadOnly Property Verbs As IEnumerable(Of IVerb) Implements IMetaphorEntity.Verbs

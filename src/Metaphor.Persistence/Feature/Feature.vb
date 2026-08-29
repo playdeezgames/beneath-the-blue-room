@@ -15,12 +15,6 @@ Friend Class Feature
         End Get
     End Property
 
-    Public Overrides ReadOnly Property Exists As Boolean
-        Get
-            Return _data.Entities.ContainsKey(EntityId)
-        End Get
-    End Property
-
     Public Property Destination As ILocation Implements IFeature.Destination
         Get
             Return World.GetLocation(GetYoke(Yokes.DESTINATION))

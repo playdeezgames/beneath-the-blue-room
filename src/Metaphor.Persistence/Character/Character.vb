@@ -22,12 +22,6 @@ Friend Class Character
         End Set
     End Property
 
-    Public Overrides ReadOnly Property Exists As Boolean
-        Get
-            Return _data.Entities.ContainsKey(EntityId)
-        End Get
-    End Property
-
     Public Property DialogMode As String Implements ICharacter.DialogMode
         Get
             Return TryGetMetadata(Metadatas.DIALOG_MODE)

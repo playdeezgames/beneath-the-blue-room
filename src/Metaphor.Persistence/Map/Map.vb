@@ -9,12 +9,6 @@ Friend Class Map
         MyBase.New(world, data, entityId)
     End Sub
 
-    Public Overrides ReadOnly Property Exists As Boolean
-        Get
-            Return _data.Entities.ContainsKey(EntityId)
-        End Get
-    End Property
-
     Public ReadOnly Property Size As (Columns As Integer, Rows As Integer) Implements IMap.Size
         Get
             Return (GetCounter(Counters.COLUMNS), GetCounter(Counters.ROWS))
