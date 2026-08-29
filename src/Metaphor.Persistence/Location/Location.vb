@@ -2,7 +2,7 @@
 Imports TGGD.Provision
 
 Friend Class Location
-    Inherits MetaphorEntity(Of EntityData)
+    Inherits MetaphorEntity
     Implements ILocation
 
     Private Sub New(world As IWorld, data As WorldData, locationId As Guid)

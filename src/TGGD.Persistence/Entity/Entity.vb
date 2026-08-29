@@ -1,9 +1,9 @@
 ﻿Imports TGGD.Provision
 
-Public MustInherit Class Entity(Of TData As EntityData)
+Public MustInherit Class Entity
     Implements IEntity
 
-    Protected MustOverride ReadOnly Property Data As TData
+    Protected MustOverride ReadOnly Property Data As EntityData
 
     Public Overridable Sub Clear() Implements IEntity.Clear
         Data.CounterMaximums.Clear()

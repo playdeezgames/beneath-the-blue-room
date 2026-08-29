@@ -4,10 +4,11 @@ Imports TGGD.Persistence
 Imports TGGD.Provision
 
 Public Class World
-    Inherits Entity(Of WorldData)
+    Inherits Entity
     Implements IWorld
 
     Private Sub New(data As WorldData, persister As IPersister)
+        Me.worldData = data
         Me.Data = data
         Me.persister = persister
     End Sub
@@ -15,23 +16,24 @@ Public Class World
     Public Overrides Sub Clear()
         MyBase.Clear()
         ClearMessages()
-        Data.Entities.Clear()
-        Data.AdFinishes = Nothing
+        worldData.Entities.Clear()
+        worldData.AdFinishes = Nothing
     End Sub
 
-    Protected Overrides ReadOnly Property Data As WorldData
+    Private ReadOnly worldData As WorldData
+    Protected Overrides ReadOnly Property Data As EntityData
 
     Public ReadOnly Property Messages As IEnumerable(Of IMessage) Implements IWorld.Messages
         Get
             Return Enumerable.
-                Range(0, Data.Messages.Count).
-                Select(Function(x) TGGD.Persistence.Message.Create(Function() Data.Messages(x)))
+                Range(0, worldData.Messages.Count).
+                Select(Function(x) TGGD.Persistence.Message.Create(Function() worldData.Messages(x)))
         End Get
     End Property
 
     Public Property Avatar As ICharacter Implements IWorld.Avatar
         Get
-            Return Character.Create(Me, Data, GetYoke(Yokes.AVATAR))
+            Return Character.Create(Me, worldData, GetYoke(Yokes.AVATAR))
         End Get
         Set(value As ICharacter)
             If value Is Nothing Then
@@ -44,10 +46,10 @@ Public Class World
 
     Public Property AdFinish As DateTimeOffset? Implements IWorld.AdFinish
         Get
-            Return Data.AdFinishes
+            Return worldData.AdFinishes
         End Get
         Set(value As DateTimeOffset?)
-            Data.AdFinishes = value
+            worldData.AdFinishes = value
         End Set
     End Property
 
@@ -66,7 +68,7 @@ Public Class World
     End Function
 
     Public Sub ClearMessages() Implements IWorld.ClearMessages
-        Data.Messages.Clear()
+        worldData.Messages.Clear()
     End Sub
 
     Public Sub AddMessage(
@@ -79,12 +81,12 @@ Public Class World
         If hints IsNot Nothing Then
             messageData.Hints = hints.ToDictionary(Function(x) x.Key, Function(x) x.Value)
         End If
-        Data.Messages.Add(messageData)
+        worldData.Messages.Add(messageData)
     End Sub
 
     Public Function CreateLocation(entitySubtype As String, name As String, Optional initializer As LocationInitializer = Nothing) As ILocation Implements IWorld.CreateLocation
         Dim locationId = Guid.NewGuid
-        Data.Entities(locationId) = New EntityData With
+        worldData.Entities(locationId) = New EntityData With
             {
                 .EntityType = EntityTypes.LOCATION_ENTITY,
                 .Metadatas = New Dictionary(Of String, String) From
@@ -93,26 +95,26 @@ Public Class World
                     {Metadatas.NAME, name}
                 }
             }
-        Dim result = Location.Create(Me, Data, locationId)
+        Dim result = Location.Create(Me, worldData, locationId)
         initializer?.Invoke(result)
         Return result
     End Function
 
     Public Function GetLocation(locationId As Guid?) As ILocation Implements IWorld.GetLocation
-        Return Location.Create(Me, Data, locationId)
+        Return Location.Create(Me, worldData, locationId)
     End Function
 
     Public Function GetCharacter(characterId As Guid?) As ICharacter Implements IWorld.GetCharacter
-        Return Character.Create(Me, Data, characterId)
+        Return Character.Create(Me, worldData, characterId)
     End Function
 
     Public Function GetFeature(featureId As Guid?) As IFeature Implements IWorld.GetFeature
-        Return Feature.Create(Me, Data, featureId)
+        Return Feature.Create(Me, worldData, featureId)
     End Function
 
     Public Function CreateMap(entitySubtype As String, name As String, size As (Columns As Integer, Rows As Integer), Optional initializer As MapInitializer = Nothing) As IMap Implements IWorld.CreateMap
         Dim mapId = Guid.NewGuid
-        Data.Entities(mapId) = New EntityData With
+        worldData.Entities(mapId) = New EntityData With
             {
                 .EntityType = EntityTypes.MAP_ENTITY,
                 .Metadatas = New Dictionary(Of String, String) From
@@ -126,12 +128,12 @@ Public Class World
                     {Counters.ROWS, size.Rows}
                 }
             }
-        Dim result = Map.Create(Me, Data, mapId)
+        Dim result = Map.Create(Me, worldData, mapId)
         initializer?.Invoke(result)
         Return result
     End Function
 
     Public Function GetMap(mapId As Guid?) As IMap Implements IWorld.GetMap
-        Return Map.Create(Me, Data, mapId)
+        Return Map.Create(Me, worldData, mapId)
     End Function
 End Class

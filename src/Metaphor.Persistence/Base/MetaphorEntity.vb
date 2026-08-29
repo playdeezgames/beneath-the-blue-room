@@ -2,8 +2,8 @@
 Imports TGGD.Persistence
 Imports TGGD.Provision
 
-Friend MustInherit Class MetaphorEntity(Of TData As EntityData)
-    Inherits Entity(Of TData)
+Friend MustInherit Class MetaphorEntity
+    Inherits Entity
     Implements IMetaphorEntity
 
     Protected Sub New(world As IWorld, data As WorldData, entityId As Guid)

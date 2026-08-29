@@ -2,7 +2,7 @@
 Imports TGGD.Provision
 
 Friend Class Inventory
-    Inherits MetaphorEntity(Of EntityData)
+    Inherits MetaphorEntity
     Implements IInventory
 
     Public Sub New(world As IWorld, data As WorldData, inventoryId As Guid)

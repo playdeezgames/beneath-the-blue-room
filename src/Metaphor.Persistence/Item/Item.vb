@@ -2,7 +2,7 @@
 Imports TGGD.Provision
 
 Friend Class Item
-    Inherits MetaphorEntity(Of EntityData)
+    Inherits MetaphorEntity
     Implements IItem
 
     Private Sub New(world As IWorld, data As WorldData, itemId As Guid)

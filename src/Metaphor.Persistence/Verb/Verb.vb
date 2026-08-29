@@ -2,7 +2,7 @@
 Imports TGGD.Provision
 
 Friend Class Verb
-    Inherits MetaphorEntity(Of EntityData)
+    Inherits MetaphorEntity
     Implements IVerb
 
     Private Sub New(world As IWorld, data As WorldData, verbId As Guid)

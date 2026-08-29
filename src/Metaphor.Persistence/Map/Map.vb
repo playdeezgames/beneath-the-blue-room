@@ -2,7 +2,7 @@
 Imports TGGD.Provision
 
 Friend Class Map
-    Inherits MetaphorEntity(Of EntityData)
+    Inherits MetaphorEntity
     Implements IMap
 
     Private Sub New(world As IWorld, data As WorldData, entityId As Guid)
