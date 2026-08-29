@@ -20,8 +20,18 @@ Public Module CharacterVerbExtensions
 
     Private ReadOnly performTable As New Dictionary(Of String, PerformHandler) From
         {
-            {VerbSubtypes.MOVE, AddressOf HandleMove}
+            {VerbSubtypes.MOVE, AddressOf HandleMove},
+            {VerbSubtypes.LOOK, AddressOf HandleLook},
+            {VerbSubtypes.STATUS, AddressOf HandleStatus}
         }
+
+    Private Sub HandleStatus(verb As IVerb, character As ICharacter, actor As ICharacter)
+        actor.Look()
+    End Sub
+
+    Private Sub HandleLook(verb As IVerb, character As ICharacter, actor As ICharacter)
+        actor.ShowStatus()
+    End Sub
 
     Private Sub HandleMove(verb As IVerb, character As ICharacter, actor As ICharacter)
         Dim deltaX = verb.GetCounter(Counters.DELTA_X)

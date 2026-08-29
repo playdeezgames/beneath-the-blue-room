@@ -19,8 +19,6 @@ Friend Class NavigationMenu
             Return Enumerable.Empty(Of LaunchDelegate).
                 Concat(Model.Location.AvailableVerbs.Select(AddressOf ChooseLocationVerb)).
                 Concat(Model.Avatar.AvailableVerbs.Select(AddressOf ChooseAvatarVerb)).
-                Append(AddressOf ChooseStatus). 'TODO: make into verb
-                Append(AddressOf ChooseLook). 'TODO: make into verb
                 Append(AddressOf ChooseGround).
                 Append(AddressOf ChooseInventory).
                 Concat(Model.Location.Characters.Others.Select(AddressOf ChooseOtherCharacter)).
@@ -48,10 +46,6 @@ Friend Class NavigationMenu
                End Function
     End Function
 
-    Private Function ChooseStatus(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Status...", StatusActivity.LaunchStatusActivity(context, model, previous))
-    End Function
-
     Private Shared Function ChooseAvatarVerb(verbModel As IVerbModel) As LaunchDelegate
         Return Function(c, m, p) DialogChoice.Create(verbModel.IsEnabled, verbModel.Name, AvatarVerbActivity.Launch(c, m, p, verbModel))
     End Function
@@ -65,10 +59,6 @@ Friend Class NavigationMenu
                                     model As IWorldModel,
                                     previous As DialogSource) As IDialogChoice
         Return DialogChoice.Create(model.Avatar.Inventory.HasItems, "Inventory...", InventoryMenu.Launch(context, model, previous))
-    End Function
-
-    Private Function ChooseLook(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Look", LookActivity.Launch(context, model, previous))
     End Function
 
     Private Function ChooseGround(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice

@@ -10,6 +10,8 @@ Friend Module CharacterInitializationExtensions
         character.CreateMoveVerb("E", 1, 0)
         character.CreateMoveVerb("S", 0, 1)
         character.CreateMoveVerb("W", -1, 0)
+        character.CreateLookVerb()
+        character.CreateStatusVerb()
     End Sub
 #End Region
 End Module

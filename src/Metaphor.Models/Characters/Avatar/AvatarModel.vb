@@ -1,5 +1,4 @@
-﻿Imports Metaphor.Extensions
-Imports Metaphor.Persistence
+﻿Imports Metaphor.Persistence
 
 Friend Class AvatarModel
     Implements IAvatarModel
@@ -33,16 +32,6 @@ Friend Class AvatarModel
             Return MapModel.Create(avatar.Location.Map)
         End Get
     End Property
-
-    Public Sub ShowStatus() Implements IAvatarModel.ShowStatus
-        avatar.World.ClearMessages()
-        avatar.ShowStatus()
-    End Sub
-
-    Public Sub Look() Implements IAvatarModel.Look
-        avatar.World.ClearMessages()
-        avatar.Look()
-    End Sub
 
     Friend Shared Function Create(avatar As ICharacter) As IAvatarModel
         Return New AvatarModel(avatar)

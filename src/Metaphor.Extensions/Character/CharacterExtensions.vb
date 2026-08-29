@@ -29,10 +29,21 @@ Public Module CharacterExtensions
 #Region "Verbs"
     <Extension>
     Friend Sub CreateMoveVerb(character As ICharacter, name As String, deltaX As Integer, deltaY As Integer)
-        character.CreateVerb(VerbSubtypes.MOVE, name, Sub(verb)
-                                                          verb.SetCounter(Counters.DELTA_X, deltaX)
-                                                          verb.SetCounter(Counters.DELTA_Y, deltaY)
-                                                      End Sub)
+        character.CreateVerb(
+            VerbSubtypes.MOVE,
+            name,
+            Sub(verb)
+                verb.SetCounter(Counters.DELTA_X, deltaX)
+                verb.SetCounter(Counters.DELTA_Y, deltaY)
+            End Sub)
+    End Sub
+    <Extension>
+    Friend Sub CreateStatusVerb(character As ICharacter)
+        character.CreateVerb(VerbSubtypes.STATUS, "Status")
+    End Sub
+    <Extension>
+    Friend Sub CreateLookVerb(character As ICharacter)
+        character.CreateVerb(VerbSubtypes.LOOK, "Look")
     End Sub
 #End Region
 End Module
