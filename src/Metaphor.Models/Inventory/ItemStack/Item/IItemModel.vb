@@ -4,4 +4,5 @@
     Sub Drop()
     Sub Describe()
     ReadOnly Property Verbs As IEnumerable(Of IVerbModel)
+    ReadOnly Property ItemType As String
 End Interface

@@ -6,12 +6,12 @@ Friend Module MapInitializationExtensions
         {
             "####################",
             "#..................#",
-            "#..c...............#",
+            "#..c............r..#",
             "#..................#",
             "#..................#",
             "#..................#",
             "#..................#",
-            "#.........☻........#",
+            "#.........@........#",
             "#..................#",
             "#..................#",
             "#..................#",
@@ -20,7 +20,6 @@ Friend Module MapInitializationExtensions
             "#..................#",
             "####################"
         }
-    Private Const AVATAR_CHARACTER = "☻"c
     Private ReadOnly blueRoomDeets As New Dictionary(Of
             Char,
                 (Subtype As String,
@@ -29,9 +28,14 @@ Friend Module MapInitializationExtensions
         {
             {"#"c, (LocationSubtypes.WALL, "Wall", AddressOf InitializeBlueWall)},
             {"."c, (LocationSubtypes.FLOOR, "Floor", Nothing)},
-            {AVATAR_CHARACTER, (LocationSubtypes.FLOOR, "Floor", AddressOf InitializeAvatar)},
-            {"c"c, (LocationSubtypes.FLOOR, "Floor", AddressOf InitializeChest)}
+            {"@"c, (LocationSubtypes.FLOOR, "Floor", AddressOf InitializeAvatar)},
+            {"c"c, (LocationSubtypes.FLOOR, "Floor", AddressOf InitializeChest)},
+            {"r"c, (LocationSubtypes.FLOOR, "Floor", AddressOf InitializeRat)}
         }
+
+    Private Sub InitializeRat(location As ILocation)
+        location.CreateCharacter(CharacterSubtypes.RAT, "Rat", AddressOf CharacterInitializationExtensions.InitializeRat)
+    End Sub
 
     Private Sub InitializeChest(location As ILocation)
         location.CreateFeature(FeatureSubtypes.CHEST, "Chest", AddressOf FeatureInitializationExtensions.InitializeBlueRoomChest)

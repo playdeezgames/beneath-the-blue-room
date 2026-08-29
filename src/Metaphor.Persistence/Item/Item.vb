@@ -14,9 +14,13 @@ Friend Class Item
             Return Persistence.Inventory.Create(World, _data, GetYoke(Yokes.CONTAINER))
         End Get
         Set(value As IInventory)
-            Container.RemoveFromYokage(Yokages.ITEMS, EntityId)
-            SetYoke(Yokes.CONTAINER, value.EntityId)
-            Container.AddToYokage(Yokages.ITEMS, EntityId)
+            Container?.RemoveFromYokage(Yokages.ITEMS, EntityId)
+            If value IsNot Nothing Then
+                SetYoke(Yokes.CONTAINER, value.EntityId)
+                Container.AddToYokage(Yokages.ITEMS, EntityId)
+            Else
+                ClearYoke(Yokes.CONTAINER)
+            End If
         End Set
     End Property
 

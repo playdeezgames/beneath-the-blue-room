@@ -136,4 +136,8 @@ Public Class World
     Public Function GetMap(mapId As Guid?) As IMap Implements IWorld.GetMap
         Return Map.Create(Me, worldData, mapId)
     End Function
+
+    Public Function GetItem(itemId As Guid?) As IItem Implements IWorld.GetItem
+        Return Item.Create(Me, worldData, itemId)
+    End Function
 End Class

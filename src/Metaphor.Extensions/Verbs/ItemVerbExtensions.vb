@@ -7,7 +7,12 @@ Public Module ItemVerbExtensions
 #Region "Can Perform"
     Private ReadOnly canPerformTable As New Dictionary(Of String, CanPerformHandler) From
         {
+            {VerbSubtypes.EQUIP, AddressOf CanEquip}
         }
+
+    Private Function CanEquip(verb As IVerb, item As IItem, actor As ICharacter) As Boolean
+        Return actor.CanEquip(item)
+    End Function
 
     <Extension>
     Public Function CanPerform(verb As IVerb, item As IItem, actor As ICharacter) As Boolean
@@ -21,7 +26,12 @@ Public Module ItemVerbExtensions
 #Region "Perform"
     Private ReadOnly performTable As New Dictionary(Of String, PerformHandler) From
         {
+            {VerbSubtypes.EQUIP, AddressOf HandleEquip}
         }
+
+    Private Sub HandleEquip(verb As IVerb, item As IItem, actor As ICharacter)
+        actor.Equip(item)
+    End Sub
 
     <Extension>
     Sub Perform(verb As IVerb, item As IItem, actor As ICharacter)

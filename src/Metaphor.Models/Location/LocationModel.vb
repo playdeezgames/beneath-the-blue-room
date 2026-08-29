@@ -28,7 +28,7 @@ Friend Class LocationModel
 
     Public ReadOnly Property Ground As IGroundModel Implements ILocationModel.Ground
         Get
-            Return GroundModel.Create(location.World)
+            Return GroundModel.Create(location)
         End Get
     End Property
 

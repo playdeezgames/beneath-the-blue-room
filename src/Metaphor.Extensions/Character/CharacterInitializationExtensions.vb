@@ -13,5 +13,9 @@ Friend Module CharacterInitializationExtensions
         character.CreateLookVerb()
         character.CreateStatusVerb()
     End Sub
+
+    Friend Sub InitializeRat(character As ICharacter)
+        character.SetTag(Tags.ENEMY)
+    End Sub
 #End Region
 End Module

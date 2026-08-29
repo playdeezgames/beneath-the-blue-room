@@ -22,6 +22,12 @@ Friend Class ItemModel
         End Get
     End Property
 
+    Public ReadOnly Property ItemType As String Implements IItemModel.ItemType
+        Get
+            Return item.EntitySubtype
+        End Get
+    End Property
+
     Public Sub Take() Implements IItemModel.Take
         Dim world = item.World
         Dim character = world.Avatar
