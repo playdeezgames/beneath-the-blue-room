@@ -45,6 +45,7 @@ Public Module CharacterVerbExtensions
         Else
             actor.AddMessage($"{actor.Name} moves {directionName}.")
             actor.Location = nextLocation
+            actor.Look()
         End If
     End Sub
 
