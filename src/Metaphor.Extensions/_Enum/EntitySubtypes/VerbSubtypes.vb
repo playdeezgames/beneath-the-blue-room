@@ -4,4 +4,5 @@
     Friend Const LOOK As String = NameOf(LOOK)
     Friend Const MOVE As String = NameOf(MOVE)
     Friend Const STATUS As String = NameOf(STATUS)
+    Friend Const UNEQUIP As String = NameOf(UNEQUIP)
 End Class

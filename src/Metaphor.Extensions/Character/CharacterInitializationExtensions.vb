@@ -12,10 +12,12 @@ Friend Module CharacterInitializationExtensions
         character.CreateMoveVerb("W", "west", -1, 0)
         character.CreateLookVerb()
         character.CreateStatusVerb()
+        character.InitializeCounter(Counters.HEALTH, 3, 0, 3)
     End Sub
 
     Friend Sub InitializeRat(character As ICharacter)
         character.SetTag(Tags.ENEMY)
+        character.InitializeCounter(Counters.HEALTH, 1, 0, 1)
     End Sub
 #End Region
 End Module

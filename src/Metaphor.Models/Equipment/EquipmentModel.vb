@@ -16,6 +16,12 @@ Friend Class EquipmentModel
         End Get
     End Property
 
+    Public ReadOnly Property All As IEnumerable(Of IItemModel) Implements IEquipmentModel.All
+        Get
+            Return character.GetEquipment().Select(AddressOf ItemModel.Create)
+        End Get
+    End Property
+
     Friend Shared Function Create(character As ICharacter) As IEquipmentModel
         Return New EquipmentModel(character)
     End Function

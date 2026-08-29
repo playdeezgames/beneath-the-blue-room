@@ -26,11 +26,11 @@ Public Module CharacterVerbExtensions
         }
 
     Private Sub HandleStatus(verb As IVerb, character As ICharacter, actor As ICharacter)
-        actor.Look()
+        actor.ShowStatus()
     End Sub
 
     Private Sub HandleLook(verb As IVerb, character As ICharacter, actor As ICharacter)
-        actor.ShowStatus()
+        actor.Look()
     End Sub
 
     Private Sub HandleMove(verb As IVerb, character As ICharacter, actor As ICharacter)

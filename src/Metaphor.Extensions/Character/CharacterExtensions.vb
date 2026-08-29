@@ -6,6 +6,7 @@ Public Module CharacterExtensions
     <Extension>
     Public Sub ShowStatus(character As ICharacter)
         character.AddMessage($"Status:")
+        character.AddMessage($"Health: {character.GetCounterStatistic(Counters.HEALTH)}")
     End Sub
 #End Region
 #Region "Look"
