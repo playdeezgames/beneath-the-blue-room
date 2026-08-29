@@ -19,18 +19,18 @@ Friend Class NavigationMenu
             Return Enumerable.Empty(Of LaunchDelegate).
                 Concat(Model.Location.AvailableVerbs.Select(AddressOf ChooseLocationVerb)).
                 Concat(Model.Avatar.AvailableVerbs.Select(AddressOf ChooseAvatarVerb)).
-                Append(AddressOf ChooseStatus).
+                Append(AddressOf ChooseStatus). 'TODO: make into verb
+                Append(AddressOf ChooseLook). 'TODO: make into verb
                 Append(AddressOf ChooseGround).
                 Append(AddressOf ChooseInventory).
-                Concat(Model.Location.Characters.Others.Select(AddressOf ChooseCharacter)).
+                Concat(Model.Location.Characters.Others.Select(AddressOf ChooseOtherCharacter)).
                 Concat(Model.Location.Features.AllVisible.Select(AddressOf ChooseFeature)).
-                Append(AddressOf ChooseLook).
                 Append(AddressOf InPlay.ChooseWatchAd).
                 Append(AddressOf InPlay.ChooseGameMenu)
         End Get
     End Property
 
-    Private Function ChooseCharacter(characterModel As ICharacterModel) As LaunchDelegate
+    Private Function ChooseOtherCharacter(characterModel As ICharacterModel) As LaunchDelegate
         Return Function(c, m, p)
                    Return DialogChoice.Create(
                         True,

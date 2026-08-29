@@ -5,7 +5,11 @@ Public Module WorldExtensions
 #Region "Blue Room"
     <Extension>
     Private Function CreateBlueRoom(world As IWorld, context As IInitializationContext) As IMap
-        Return world.CreateMap(MapSubtypes.BLUE_ROOM, "The Blue Room", (Grimoire.ROOM_COLUMNS, Grimoire.ROOM_ROWS), MapInitializationExtensions.InitializeBlueRoom(context))
+        Return world.CreateMap(
+            MapSubtypes.BLUE_ROOM,
+            "The Blue Room",
+            (Grimoire.ROOM_COLUMNS, Grimoire.ROOM_ROWS),
+            MapInitializationExtensions.InitializeBlueRoom(context))
     End Function
 #End Region
     <Extension>

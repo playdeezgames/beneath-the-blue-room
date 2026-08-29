@@ -65,4 +65,8 @@ Friend Class Map
         initializer?.Invoke(result)
         Return result
     End Function
+
+    Public Function GetLocation(column As Integer, row As Integer) As ILocation Implements IMap.GetLocation
+        Return Locations.SingleOrDefault(Function(x) x.Column = column AndAlso x.Row = row)
+    End Function
 End Class

@@ -23,10 +23,15 @@ Friend Module MapInitializationExtensions
     Private Const AVATAR_CHARACTER = "@"c
     Private ReadOnly blueRoomDeets As New Dictionary(Of Char, (Subtype As String, Name As String, Initializer As LocationInitializer)) From
         {
-            {"#"c, (LocationSubtypes.WALL, "Wall", Nothing)},
+            {"#"c, (LocationSubtypes.WALL, "Wall", AddressOf InitializeWall)},
             {"."c, (LocationSubtypes.FLOOR, "Floor", Nothing)},
             {AVATAR_CHARACTER, (LocationSubtypes.FLOOR, "Floor", Nothing)}
         }
+
+    Private Sub InitializeWall(location As ILocation)
+        location.SetTag(Tags.BLOCKED)
+    End Sub
+
     Friend Function InitializeBlueRoom(context As IInitializationContext) As MapInitializer
         Return Sub(map)
                    Dim row = 0

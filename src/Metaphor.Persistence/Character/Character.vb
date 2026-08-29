@@ -37,6 +37,12 @@ Friend Class Character
         End Set
     End Property
 
+    Public ReadOnly Property Map As IMap Implements ICharacter.Map
+        Get
+            Return Location.Map
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As EntityData
         Get
             Return _data.Entities(EntityId)

@@ -20,7 +20,21 @@ Public Module CharacterVerbExtensions
 
     Private ReadOnly performTable As New Dictionary(Of String, PerformHandler) From
         {
+            {VerbSubtypes.MOVE, AddressOf HandleMove}
         }
+
+    Private Sub HandleMove(verb As IVerb, character As ICharacter, actor As ICharacter)
+        Dim deltaX = verb.GetCounter(Counters.DELTA_X)
+        Dim deltaY = verb.GetCounter(Counters.DELTA_Y)
+        Dim nextColumn = character.Location.Column + deltaX
+        Dim nextRow = character.Location.Row + deltaY
+        Dim nextLocation = character.Map.GetLocation(nextColumn, nextRow)
+        If nextLocation Is Nothing OrElse nextLocation.HasTag(Tags.BLOCKED) Then
+            actor.AddMessage("Nope!")
+        Else
+            actor.Location = nextLocation
+        End If
+    End Sub
 
     <Extension>
     Sub Perform(verb As IVerb, character As ICharacter, actor As ICharacter)

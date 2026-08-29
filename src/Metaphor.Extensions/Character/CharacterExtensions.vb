@@ -26,4 +26,13 @@ Public Module CharacterExtensions
         End If
     End Sub
 #End Region
+#Region "Verbs"
+    <Extension>
+    Friend Sub CreateMoveVerb(character As ICharacter, name As String, deltaX As Integer, deltaY As Integer)
+        character.CreateVerb(VerbSubtypes.MOVE, name, Sub(verb)
+                                                          verb.SetCounter(Counters.DELTA_X, deltaX)
+                                                          verb.SetCounter(Counters.DELTA_Y, deltaY)
+                                                      End Sub)
+    End Sub
+#End Region
 End Module
