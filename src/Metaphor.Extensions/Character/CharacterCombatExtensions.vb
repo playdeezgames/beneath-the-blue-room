@@ -2,6 +2,22 @@
 Imports Metaphor.Persistence
 
 Public Module CharacterCombatExtensions
+    <Extension>
+    Friend Function GetAttack(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.ATTACK) + character.GetEquipment().Sum(Function(x) x.GetCounter(Counters.ATTACK))
+    End Function
+    <Extension>
+    Friend Function GetAttackCap(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.ATTACK_CAP) + character.GetEquipment().Sum(Function(x) x.GetCounter(Counters.ATTACK_CAP))
+    End Function
+    <Extension>
+    Friend Function GetDefend(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.DEFEND) + character.GetEquipment().Sum(Function(x) x.GetCounter(Counters.DEFEND))
+    End Function
+    <Extension>
+    Friend Function GetDefendCap(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.DEFEND_CAP) + character.GetEquipment().Sum(Function(x) x.GetCounter(Counters.DEFEND_CAP))
+    End Function
 #Region "Equipment"
     <Extension>
     Public Function HasEquipment(character As ICharacter) As Boolean
