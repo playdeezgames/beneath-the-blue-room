@@ -1,8 +1,12 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Metaphor.Persistence
 
-Friend Module CharacterCombatExtensions
+Public Module CharacterCombatExtensions
 #Region "Equipment"
+    <Extension>
+    Public Function HasEquipment(character As ICharacter) As Boolean
+        Return character.GetYokage(Yokages.EQUIPMENT).Any()
+    End Function
     <Extension>
     Private Function GetEquipment(character As ICharacter) As IEnumerable(Of IItem)
         Return character.GetYokage(Yokages.EQUIPMENT).Select(Function(x) character.World.GetItem(x))
