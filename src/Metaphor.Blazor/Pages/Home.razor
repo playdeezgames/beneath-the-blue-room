@@ -15,7 +15,7 @@
 			<tr>
 				@foreach(var gridCell in gridRow.Cells)
 				{
-					<td class="gridcell @TransformClass(gridCell.Attribute)">@TransformText(gridCell.Character)</td>
+					<td title="@gridCell.ToolTip" class="gridcell @TransformClass(gridCell.Attribute)">@TransformText(gridCell.Character)</td>
 				}
 			</tr>
 		}

@@ -10,6 +10,8 @@
 
     Public Property Attribute As Byte Implements IGridCell.Attribute
 
+    Public Property ToolTip As String Implements IGridCell.ToolTip
+
     Friend Shared Function Create() As IGridCell
         Return New GridCell
     End Function
