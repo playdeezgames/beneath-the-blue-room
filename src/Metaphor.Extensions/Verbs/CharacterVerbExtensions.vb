@@ -39,9 +39,11 @@ Public Module CharacterVerbExtensions
         Dim nextColumn = character.Location.Column + deltaX
         Dim nextRow = character.Location.Row + deltaY
         Dim nextLocation = character.Map.GetLocation(nextColumn, nextRow)
+        Dim directionName = verb.GetMetadata(Metadatas.DIRECTION_NAME)
         If nextLocation Is Nothing OrElse nextLocation.HasTag(Tags.BLOCKED) Then
-            actor.AddMessage("Nope!")
+            actor.AddMessage($"{actor.Name} cannot move {directionName}.")
         Else
+            actor.AddMessage($"{actor.Name} moves {directionName}.")
             actor.Location = nextLocation
         End If
     End Sub

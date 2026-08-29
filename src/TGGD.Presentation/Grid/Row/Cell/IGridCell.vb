@@ -1,4 +1,4 @@
 ﻿Public Interface IGridCell
-    Property Text As Byte
-    Property [Class] As Byte
+    Property Character As Byte
+    Property Attribute As Byte
 End Interface

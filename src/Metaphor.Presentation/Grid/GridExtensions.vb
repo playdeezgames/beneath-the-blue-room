@@ -21,8 +21,8 @@ Friend Module GridExtensions
             Dim character = location.Characters.All.FirstOrDefault()
             Dim deets = If(character Is Nothing, locationTypeDeets(location.LocationType), characterTypeDeets(character.CharacterType))
             Dim cell = grid.Rows(location.Row).Cells(location.Column)
-            cell.Text = deets.Text
-            cell.Class = deets.Class
+            cell.Character = deets.Text
+            cell.Attribute = deets.Class
         Next
     End Sub
 End Module

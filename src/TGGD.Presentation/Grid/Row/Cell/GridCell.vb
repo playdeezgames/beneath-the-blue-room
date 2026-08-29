@@ -2,13 +2,13 @@
     Implements IGridCell
 
     Private Sub New()
-        Text = 64
-        [Class] = 15
+        Character = 64
+        Attribute = 15
     End Sub
 
-    Public Property Text As Byte Implements IGridCell.Text
+    Public Property Character As Byte Implements IGridCell.Character
 
-    Public Property [Class] As Byte Implements IGridCell.Class
+    Public Property Attribute As Byte Implements IGridCell.Attribute
 
     Friend Shared Function Create() As IGridCell
         Return New GridCell

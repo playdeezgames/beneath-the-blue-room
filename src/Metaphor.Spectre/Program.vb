@@ -45,8 +45,8 @@ Module Program
 
     Private Sub RenderGridCell(cell As IGridCell)
         Dim xform As String = Nothing
-        If Not characterXform.TryGetValue(cell.Text, xform) Then
-            xform = Chr(CInt(cell.Text))
+        If Not characterXform.TryGetValue(cell.Character, xform) Then
+            xform = Chr(CInt(cell.Character))
         End If
         AnsiConsole.Markup(xform)
     End Sub

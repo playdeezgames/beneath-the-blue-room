@@ -4,21 +4,25 @@
 
 <PageTitle>Beneath the Blue Room</PageTitle>
 
+<table>
+	<tr>
 @if(display?.Grid != null)
 {
+	<td>
 	<table>
 		@foreach(var gridRow in display.Grid.Rows)
 		{
 			<tr>
 				@foreach(var gridCell in gridRow.Cells)
 				{
-					<td class="gridcell @TransformClass(gridCell.Class)">@TransformText(gridCell.Text)</td>
+					<td class="gridcell @TransformClass(gridCell.Attribute)">@TransformText(gridCell.Character)</td>
 				}
 			</tr>
 		}
 	</table>
+	</td>
 }
-
+<td class="narrative-frame">
 @foreach(var element in display?.Elements ?? Array.Empty<IDisplayElement>())
 {
 	if(element.Hints?.TryGetValue(HintNames.ELEMENT_TYPE, out string? elementType) ?? false)
@@ -46,6 +50,9 @@
 		}
 	}
 }
+</td>
+</tr>
+</table>
 
 @switch(display?.Prompt?.PromptType)
 {
