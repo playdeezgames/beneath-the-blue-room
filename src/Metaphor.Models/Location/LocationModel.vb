@@ -15,13 +15,6 @@ Friend Class LocationModel
         End Get
     End Property
 
-    Public ReadOnly Property OtherCharacters As IEnumerable(Of ICharacterModel) Implements ILocationModel.OtherCharacters
-        Get
-            Dim avatar = location.World.Avatar
-            Return location.GetOtherCharacters(avatar).Select(AddressOf CharacterModel.Create)
-        End Get
-    End Property
-
     Friend Shared Function Create(location As ILocation) As ILocationModel
         Return New LocationModel(location)
     End Function
