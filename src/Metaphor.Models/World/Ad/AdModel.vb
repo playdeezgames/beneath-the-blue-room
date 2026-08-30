@@ -21,7 +21,8 @@ Friend Class AdModel
     Private ReadOnly addShowers As New Dictionary(Of AddShower, Integer) From
         {
             {AddressOf ShowUmlautFyiAd, 1},
-            {AddressOf ShowPen15SiteAd, 1}
+            {AddressOf ShowPen15SiteAd, 1},
+            {AddressOf ShowJargonizeAppAd, 1}
         }
 
     Private Sub ShowUmlautFyiAd(world As IWorld)
@@ -41,6 +42,16 @@ Friend Class AdModel
             {
                 {"ELEMENT_TYPE", "LINK"},
                 {"URL", "https://pen15.site/"}
+            })
+    End Sub
+
+    Private Sub ShowJargonizeAppAd(world As IWorld)
+        world.AddMessage(
+            "Circling back, don't, which is frankly cross-functional, forget (event-driven) to Jargonize before the next raise!",
+            New Dictionary(Of String, String) From
+            {
+                {"ELEMENT_TYPE", "LINK"},
+                {"URL", "https://jargonize.app/"}
             })
     End Sub
 

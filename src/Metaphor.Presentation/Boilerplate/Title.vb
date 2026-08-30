@@ -16,6 +16,7 @@ Public Class Title
         Context.Render("Sponsored by: ")
         Context.Render("UMLAUT.FYI!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.LINK}, {HintNames.URL, "https://umlaut.fyi/"}})
         Context.Render("Pen 15!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.LINK}, {HintNames.URL, "https://pen15.site/"}})
+        Context.Render("Jargonize!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.LINK}, {HintNames.URL, "https://jargonize.app/"}})
         Return DialogPrompt.CreateChoicePrompt(
             "",
             DialogChoice.Create(True, "OK", MainMenu.Launch(Context, Model, Previous)))
