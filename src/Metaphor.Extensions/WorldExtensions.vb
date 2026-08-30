@@ -13,9 +13,9 @@ Public Module WorldExtensions
     End Function
 #End Region
     <Extension>
-    Public Sub Initialize(world As IWorld, context As IInitializationContext)
+    Public Sub Initialize(world As IWorld, chosenName As String)
         world.Clear()
-        world.SetMetadata(Metadatas.CHOSEN_NAME, context.ChosenName)
+        world.SetMetadata(Metadatas.CHOSEN_NAME, chosenName)
         world.CreateBlueRoom()
         world.AddMessage("Welcome to Beneath the Blue Room")
         world.Avatar.Look()
