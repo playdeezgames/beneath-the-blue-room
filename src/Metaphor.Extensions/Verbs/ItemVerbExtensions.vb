@@ -36,10 +36,12 @@ Public Module ItemVerbExtensions
         }
 
     Private Sub HandleUnequip(verb As IVerb, item As IItem, actor As ICharacter)
+        actor.AddMessage($"{actor.Name} equips {item.Name}.")
         actor.Unequip(item)
     End Sub
 
     Private Sub HandleEquip(verb As IVerb, item As IItem, actor As ICharacter)
+        actor.AddMessage($"{actor.Name} unequips {item.Name}.")
         actor.Equip(item)
     End Sub
 
