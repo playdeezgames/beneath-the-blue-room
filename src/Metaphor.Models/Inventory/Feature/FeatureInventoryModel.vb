@@ -15,12 +15,6 @@ Friend Class FeatureInventoryModel
         End Get
     End Property
 
-    Public ReadOnly Property Items As IEnumerable(Of IItemModel) Implements IInventoryModel.Items
-        Get
-            Return feature.Inventory.Items.Select(AddressOf ItemModel.Create)
-        End Get
-    End Property
-
     Public ReadOnly Property ItemStacks As IEnumerable(Of IItemStackModel) Implements IInventoryModel.ItemStacks
         Get
             Return feature.Inventory.ItemStacks.Select(AddressOf ItemStackModel.Create)
