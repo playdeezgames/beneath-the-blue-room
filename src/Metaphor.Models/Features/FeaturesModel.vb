@@ -9,21 +9,11 @@ Friend Class FeaturesModel
         Me.location = location
     End Sub
 
-    Public ReadOnly Property HasAny As Boolean Implements IFeaturesModel.HasAny
-        Get
-            Return location.Features.Any()
-        End Get
-    End Property
-
     Public ReadOnly Property AllVisible As IEnumerable(Of IFeatureModel) Implements IFeaturesModel.AllVisible
         Get
             Return location.Features.Select(AddressOf FeatureModel.Create)
         End Get
     End Property
-
-    Public Sub ShowList() Implements IFeaturesModel.ShowList
-        location.World.ClearMessages()
-    End Sub
 
     Friend Shared Function Create(entity As ILocation) As IFeaturesModel
         Return New FeaturesModel(entity)
