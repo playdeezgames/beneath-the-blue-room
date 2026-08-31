@@ -54,4 +54,10 @@ Friend Class LocationModel
             Return location.Row
         End Get
     End Property
+
+    Public ReadOnly Property Name As String Implements ILocationModel.Name
+        Get
+            Return location.Name
+        End Get
+    End Property
 End Class
